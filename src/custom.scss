@@ -1,0 +1,10 @@
+$deep-blue:#3f51b5;
+
+::ng-deep .warn_snackBar {
+  background: #ca3f4c;
+  color: white;
+
+  .mat-simple-snackbar-action {
+    color: white;
+  }
+}

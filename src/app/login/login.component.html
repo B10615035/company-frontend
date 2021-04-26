@@ -1,0 +1,18 @@
+<div class="login_block">
+  <p class="login_title">身分</p>
+  <form [formGroup]="login_info">
+    <mat-form-field appearance="fill">
+      <mat-label>公司</mat-label>
+      <mat-select formControlName="company_name">
+        <ng-container *ngFor="let company of company_list">
+          <mat-option value="{{company}}">{{company}}</mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="login_input">
+      <mat-label>姓名</mat-label>
+      <input matInput type="text" autocomplete="off" formControlName="company_representative">
+    </mat-form-field>
+    <button class="submit_button" mat-stroked-button color="primary" (click)="login_submit()">提交</button>
+  </form>
+</div>
