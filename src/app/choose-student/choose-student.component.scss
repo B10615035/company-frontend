@@ -1,0 +1,39 @@
+@import 'src/custom.scss';
+
+.main_block {
+  height: calc(100% - 80px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+  box-sizing: border-box;
+}
+
+th, td{
+    width: 120px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+th{
+    height: 60px;
+    border-bottom: 2px rgb(209, 209, 209) solid;
+}
+
+.submit_button{
+    margin-top: 20px;
+}
+
+.willing_table{
+    .willing_title{
+        font-size: 2rem;
+        color: $deep-blue;
+    }
+
+    .willing_content{
+        font-size: 1.2rem;
+        margin-bottom: 50px;
+    }
+}

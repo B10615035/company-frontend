@@ -13,7 +13,4 @@ import {
 export class AppComponent {
   constructor(private router: Router) {}
 
-  route_mainPage() {
-    this.router.navigate(['choose_company'])
-  }
 }

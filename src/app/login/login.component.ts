@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   constructor(private snackBar: MatSnackBar, private router: Router, private appService: AppService, private dialog:MatDialog) {}
 
   ngOnInit(): void {
+    this.appService.deleteCookie()
     this.company_list = this.appService.company_list
   }
 
@@ -51,7 +52,7 @@ export class LoginComponent implements OnInit {
         next => {
           this.appService.companyName = this.login_info.value.company_name
           this.appService.setCookie(next.info)
-          this.router.navigate(['information'])
+          this.router.navigate(['chooseStudent'])
           spinDialog.close()
         },
         error => {

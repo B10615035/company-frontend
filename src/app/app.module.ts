@@ -18,6 +18,8 @@ import { SpinDialogComponent } from './dialog/spin-dialog/spin-dialog.component'
 import { InfoDialogComponent } from './dialog/info-dialog/info-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InformationComponent } from './information/information.component';
+import { ChooseStudentComponent } from './choose-student/choose-student.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { InformationComponent } from './information/information.component';
     LoginComponent,
     SpinDialogComponent,
     InfoDialogComponent,
-    InformationComponent
+    InformationComponent,
+    ChooseStudentComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { InformationComponent } from './information/information.component';
     MatInputModule,
     MatDialogModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

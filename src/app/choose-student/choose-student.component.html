@@ -1,0 +1,30 @@
+<div class="main_block">
+
+    <div class="willing_table" *ngIf="showWilling">
+      <p class="willing_title">意願 :</p>
+      <p class="willing_content">{{willingList}}</p>
+    </div>
+  
+    <table *ngIf="showChoose">
+      <tr>
+        <th>學生姓名</th>
+        <th>意願</th>
+      </tr>
+      <ng-container *ngFor="let student of student_info">
+        <tr>
+          <td>{{student.student_name}}</td>
+          <td>
+            <button *ngIf="student.choose" color="primary" mat-icon-button (click)="student.choose = false">
+              <mat-icon>check_box</mat-icon>
+            </button>
+            <button *ngIf="!student.choose" mat-icon-button (click)="student.choose = true">
+              <mat-icon>check_box_outline_blank</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </ng-container>
+    </table>
+    <button *ngIf="showChoose" class="submit_button" mat-stroked-button color="primary" (click)="choose_student_submit()">提交</button>
+    <button *ngIf="showWilling && !showChoose" class="submit_button" mat-stroked-button color="primary" (click)="update_student_submit()">修改</button>
+  </div>
+  

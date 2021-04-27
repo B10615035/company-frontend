@@ -11,7 +11,6 @@ export class InfoDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {result}) { }
 
   ngOnInit(): void {
-    console.log(this.data.result.info)
   }
 
 }

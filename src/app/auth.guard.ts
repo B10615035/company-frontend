@@ -8,6 +8,7 @@ import {
   UrlTree,
   Router
 } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import {
   Observable
 } from 'rxjs';
@@ -23,7 +24,7 @@ import {
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private appService: AppService, private router: Router) {}
+  constructor(private appService: AppService, private router: Router, private cookie:CookieService) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -32,6 +33,7 @@ export class AuthGuard implements CanActivate {
   }
 
   checkToken(): boolean | Observable < boolean > {
+    // this.cookie.deleteAll()
     if (this.appService.checkCookie())
       return this.appService.checkTokenInService().pipe(
         tap(
@@ -46,7 +48,5 @@ export class AuthGuard implements CanActivate {
       this.router.navigate(['login'])
       return false
     }
-
   }
-
 }
