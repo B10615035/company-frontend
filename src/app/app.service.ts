@@ -28,6 +28,8 @@ export class AppService {
 
   companyName: string = ""
 
+  url = "http://3.113.9.185	:8001"
+
   company_index(name) {
     for (let i = 0; i < this.company_list.length; i++) {
       if (name == this.company_list[i])
@@ -40,19 +42,19 @@ export class AppService {
     var data = {
       name: login_info.value.company_name,
     }
-    return this.httpClient.post < any > (`http://127.0.0.1:8001/company/login`, data, {
+    return this.httpClient.post < any > (`${this.url}/company/login`, data, {
       headers: new HttpHeaders,
     }).pipe(delay(1500))
   }
 
   updateCompany(data): Observable < any > {
-    return this.httpClient.put < any > (`http://127.0.0.1:8001/company/${this.cookieService.get('company')}`, data, {
+    return this.httpClient.put < any > (`${this.url}/company/${this.cookieService.get('company')}`, data, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.getCookie()),
     }).pipe(delay(1500))
   }
 
   getCompany(): Observable < any > {
-    return this.httpClient.get < any > (`http://127.0.0.1:8001/company/${this.cookieService.get('company')}`, {
+    return this.httpClient.get < any > (`${this.url}/company/${this.cookieService.get('company')}`, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.getCookie()),
     }).pipe(delay(1500))
   }
@@ -75,7 +77,7 @@ export class AppService {
     var data = this.getCookie()
     if (!data)
       data = "login"
-    return this.httpClient.post < any > (`http://127.0.0.1:8001/auth`, {
+    return this.httpClient.post < any > (`${this.url}/auth`, {
       token: data
     }, {
       headers: new HttpHeaders(),
