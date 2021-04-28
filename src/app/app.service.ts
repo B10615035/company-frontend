@@ -41,6 +41,7 @@ export class AppService {
   loginRequest(login_info): Observable < any > {
     var data = {
       name: login_info.value.company_name,
+      id: login_info.value.company_representative
     }
     return this.httpClient.post < any > (`${this.url}/company/login`, data, {
       headers: new HttpHeaders,
