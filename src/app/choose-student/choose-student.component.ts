@@ -9,6 +9,9 @@ import {
   MatSnackBar
 } from '@angular/material/snack-bar';
 import {
+  Router
+} from '@angular/router';
+import {
   AppService
 } from '../app.service';
 import {
@@ -25,11 +28,13 @@ import {
 })
 export class ChooseStudentComponent implements OnInit {
 
-  constructor(private appService: AppService, private dialog: MatDialog, private snackBar: MatSnackBar) {}
+  constructor(private appService: AppService, private dialog: MatDialog, private snackBar: MatSnackBar, private router: Router) {}
 
   ngOnInit(): void {
     var spinDialog = this.dialog.open(SpinDialogComponent)
     this.getCompany(spinDialog, '')
+    this.companyName = this.appService.getCompanyInfo()[0]
+    this.companyRepresentative = this.appService.getCompanyInfo()[1]
   }
 
   showWilling: boolean
@@ -37,6 +42,9 @@ export class ChooseStudentComponent implements OnInit {
   willingList: string[] = []
 
   student_info = [] as any
+
+  companyName: string = ""
+  companyRepresentative: string = ""
 
   getCompany(spinDialog, info) {
     this.student_info = [] as any
@@ -50,7 +58,7 @@ export class ChooseStudentComponent implements OnInit {
             }
           })
         this.willingList = next.info.findCompany.students
-        var studentList = next.info.companyInStudent
+        var studentList = next.info.studentList
         if (this.willingList.length == 0) {
           this.showChoose = true
           this.showWilling = false
@@ -60,8 +68,9 @@ export class ChooseStudentComponent implements OnInit {
         }
         studentList.forEach(student => {
           this.student_info.push({
-            student_name: student,
-            choose: false
+            student_name: student.name,
+            student_id: student.id,
+            choose: this.willingList.includes(student.name)
           })
         })
       },
@@ -73,31 +82,39 @@ export class ChooseStudentComponent implements OnInit {
 
   choose_student_submit() {
     var studentAmount = this.student_info.filter(student => student.choose === true)
-    if (studentAmount > 30)
+
+    if (studentAmount.length > 30)
       this.snackBar.open("最多只能選擇30個學生", 'Close', {
         duration: 1500,
         panelClass: 'warn_snackBar'
       })
-    var spinDialog = this.dialog.open(SpinDialogComponent)
-    var student_result = {
-      students: [] as any
-    }
-    this.student_info.forEach(item => {
-      if (item.choose === true)
-        student_result.students.push(item.student_name)
-    })
-    this.appService.updateCompany(student_result).subscribe(
-      next => {
-        this.getCompany(spinDialog, next)
-      },
-      error => {
-        console.log(error)
+    else {
+      var spinDialog = this.dialog.open(SpinDialogComponent)
+      var student_result = {
+        students: [] as any
       }
-    )
+      this.student_info.forEach(item => {
+        if (item.choose === true)
+          student_result.students.push(item.student_name)
+      })
+      this.appService.updateCompany(student_result).subscribe(
+        next => {
+          this.getCompany(spinDialog, next)
+        },
+        error => {
+          console.log(error)
+        }
+      )
+    }
   }
 
   update_student_submit() {
     this.showChoose = true
+  }
+
+  logout_submit() {
+    this.appService.deleteCookie()
+    this.router.navigate(["login"])
   }
 
 }

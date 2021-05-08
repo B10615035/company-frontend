@@ -28,7 +28,7 @@ export class AppService {
 
   companyName: string = ""
 
-  url = "http://3.113.9.185	:8001"
+  url = "http://3.113.9.185:8001"
 
   company_index(name) {
     for (let i = 0; i < this.company_list.length; i++) {
@@ -49,21 +49,23 @@ export class AppService {
   }
 
   updateCompany(data): Observable < any > {
-    return this.httpClient.put < any > (`${this.url}/company/${this.cookieService.get('company')}`, data, {
+    return this.httpClient.put < any > (`${this.url}/company/${this.cookieService.get('companyID')}`, data, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.getCookie()),
     }).pipe(delay(1500))
   }
 
   getCompany(): Observable < any > {
-    return this.httpClient.get < any > (`${this.url}/company/${this.cookieService.get('company')}`, {
+    return this.httpClient.get < any > (`${this.url}/company/${this.cookieService.get('companyID')}`, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.getCookie()),
     }).pipe(delay(1500))
   }
 
-  setCookie(token) {
-    var companyID = this.company_index(this.companyName)
+  setCookie(token, login_info) {
+    var companyID = this.company_index(login_info.company_name)
     this.cookieService.set("token", token)
-    this.cookieService.set("company", String(companyID))
+    this.cookieService.set("companyID", String(companyID))
+    this.cookieService.set("companyName", login_info.company_name)
+    this.cookieService.set("representativeName", login_info.company_representative)
   }
 
   checkTokenInService(): Observable < any > {
@@ -87,6 +89,10 @@ export class AppService {
 
   getCookie() {
     return this.cookieService.get('token')
+  }
+
+  getCompanyInfo(){
+    return [this.cookieService.get("companyName"), this.cookieService.get("representativeName")]
   }
 
   checkCookie() {

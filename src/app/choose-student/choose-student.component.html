@@ -1,18 +1,39 @@
 <div class="main_block">
 
+  <div class="student_block">
+    <p class="title">公司資訊</p>
+    <p>{{companyName}}</p>
+    <p>{{companyRepresentative}}</p>
+    <button mat-stroked-button color="warn" class="logout_button" (click)="logout_submit()">登出</button>
+  </div>
+
+  <div class="information_block">
+    <ol>
+      <p style="text-align: center;">說明</p>
+      <li>公司登入後即可選擇想要面試的學生，最多只能選擇 30 位</li>
+      <li>勾選學生代表有意願面試該學生</li>
+      <li>未勾選學生代表無意願面試該學生</li>
+      <li>送出表單後在 5/8 之前選擇"修改"可變更選擇的學生</li>
+      <li>面談順序會於 5/15 當天公佈</li>
+    </ol>
+  </div>
+
+  <div class="choose_block">
     <div class="willing_table" *ngIf="showWilling">
-      <p class="willing_title">意願 :</p>
+      <p class="willing_title">選擇的學生</p>
       <p class="willing_content">{{willingList}}</p>
     </div>
-  
+
     <table *ngIf="showChoose">
       <tr>
         <th>學生姓名</th>
+        <th>學生准考證</th>
         <th>意願</th>
       </tr>
       <ng-container *ngFor="let student of student_info">
         <tr>
           <td>{{student.student_name}}</td>
+          <td>{{student.student_id}}</td>
           <td>
             <button *ngIf="student.choose" color="primary" mat-icon-button (click)="student.choose = false">
               <mat-icon>check_box</mat-icon>
@@ -24,7 +45,9 @@
         </tr>
       </ng-container>
     </table>
-    <button *ngIf="showChoose" class="submit_button" mat-stroked-button color="primary" (click)="choose_student_submit()">提交</button>
-    <button *ngIf="showWilling && !showChoose" class="submit_button" mat-stroked-button color="primary" (click)="update_student_submit()">修改</button>
+    <button *ngIf="showChoose" class="update_button" mat-stroked-button color="primary"
+      (click)="choose_student_submit()">提交</button>
+    <button *ngIf="showWilling && !showChoose" class="update_button" mat-stroked-button color="primary"
+      (click)="update_student_submit()">修改</button>
   </div>
-  
+</div>

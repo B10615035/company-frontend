@@ -50,8 +50,7 @@ export class LoginComponent implements OnInit {
       var spinDialog = this.dialog.open(SpinDialogComponent)
       this.appService.loginRequest(this.login_info).subscribe(
         next => {
-          this.appService.companyName = this.login_info.value.company_name
-          this.appService.setCookie(next.info)
+          this.appService.setCookie(next.info, this.login_info.value)
           this.router.navigate(['chooseStudent'])
           spinDialog.close()
         },

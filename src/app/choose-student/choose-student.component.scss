@@ -1,39 +1,86 @@
 @import 'src/custom.scss';
 
 .main_block {
-  height: calc(100% - 80px);
+  min-height: calc(100% - 80px);
   width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
   padding: 50px 20px;
   box-sizing: border-box;
 }
 
-th, td{
-    width: 120px;
-    text-align: center;
+.information_block {
+  width: 400px;
+  margin: 0 50px;
+
+  p {
+    font-size: 2rem;
+    color: $deep-blue;
+  }
+
+  li {
+    margin: 10px;
     font-size: 1.2rem;
+  }
+
+  ol {
+    padding: 0;
+  }
 }
 
-th{
-    height: 60px;
-    border-bottom: 2px rgb(209, 209, 209) solid;
+.choose_block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  margin: 0 50px;
 }
 
-.submit_button{
-    margin-top: 20px;
+th,
+td {
+  width: 120px;
+  text-align: center;
+  font-size: 1.2rem;
 }
 
-.willing_table{
-    .willing_title{
-        font-size: 2rem;
-        color: $deep-blue;
-    }
+th {
+  height: 60px;
+  border-bottom: 2px rgb(209, 209, 209) solid;
+}
 
-    .willing_content{
-        font-size: 1.2rem;
-        margin-bottom: 50px;
-    }
+.logout_button,
+.update_button {
+  margin-top: 20px;
+}
+
+
+.student_block {
+  width: 300px;
+  .title {
+    margin-right: 0;
+    font-size: 2rem;
+    color: $deep-blue;
+  }
+
+  text-align: center;
+}
+
+
+.willing_table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .willing_title {
+    font-size: 2rem;
+    color: $deep-blue;
+  }
+
+  .willing_content {
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    max-width: 80%;
+    margin-top: 0;
+  }
 }

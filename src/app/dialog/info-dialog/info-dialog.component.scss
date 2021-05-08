@@ -1,0 +1,12 @@
+.info_block{
+    width: 200px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    button{
+        margin-top: 20px;
+    }
+}

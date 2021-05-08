@@ -8,7 +8,6 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'', component:ChooseStudentComponent, canActivate:[AuthGuard]},
-  {path:'information', component:InformationComponent, canActivate:[AuthGuard]},
   {path:'chooseStudent', component:ChooseStudentComponent, canActivate:[AuthGuard]},
 ];
 
