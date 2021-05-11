@@ -30,9 +30,10 @@
 
 
 .willing_block {
-    flex-direction: column;
-    align-items: center;
+  flex-direction: column;
+  align-items: center;
   color: #858585;
+
   th,
   td {
     width: 120px;
@@ -40,29 +41,42 @@
     font-size: 1.2rem;
   }
 
+  td {
+    padding: 0 !important;
+  }
+
   th {
     color: $deep-blue;
-    height: 60px;
     border-bottom: 1px rgb(209, 209, 209) solid;
   }
 
-  input{
-      text-align: center;
+  input {
+    text-align: center;
   }
 
-  .mat-form-field{
-    width:50px !important;
+  .mat-form-field {
+    width: 50px !important;
+  }
+}
+
+.result_block {
+  td {
+    padding: 20px 20px 5px !important;
+  }
+  .update_button{
+      margin-top: 20px;
   }
 }
 
 .student_block {
-    width: 100%;
-    margin-bottom: 50px;
-    .title {
-      margin-right: 0;
-      font-size: 2rem;
-      color: $deep-blue;
-    }
-  
-    text-align: center;
+  width: 100%;
+  margin-bottom: 50px;
+
+  .title {
+    margin-right: 0;
+    font-size: 2rem;
+    color: $deep-blue;
   }
+
+  text-align: center;
+}

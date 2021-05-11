@@ -51,7 +51,27 @@
   </table>
 </div> -->
 
-<div class="schedule_block willing_block">
+<div *ngIf="showWilling" class="schedule_block willing_block result_block">
+  <table>
+    <tr>
+      <th>學生姓名</th>
+      <th>學生准考證</th>
+      <th>意願</th>
+    </tr>
+    <ng-container *ngFor="let student of final_willing_list; let i = index">
+      <tr>
+        <td>{{student.name}}</td>
+        <td>{{student.id}}</td>
+        <td>{{final_willing_list[i].willing}}</td>
+      </tr>
+    </ng-container>
+  </table>
+  <button *ngIf="showWilling && !showChoose" class="update_button" mat-stroked-button color="primary"
+    (click)="update_willing()">修改</button>
+</div>
+
+
+<div *ngIf="showChoose" class="schedule_block willing_block">
   <table>
     <tr>
       <th>時間</th>
@@ -66,11 +86,11 @@
         <td>{{student.id}}</td>
         <td>
           <mat-form-field class="example-form-field">
-            <input matInput type="text" [(ngModel)]="willing_list[i].willing">
+            <input autocomplete="off" matInput type="text" [(ngModel)]="willing_list[i].willing">
           </mat-form-field>
         </td>
       </tr>
     </ng-container>
   </table>
-  <button class="update_button" mat-stroked-button color="primary">提交</button>
+  <button class="update_button" mat-stroked-button color="primary" (click)="submit_willing()">提交</button>
 </div>
