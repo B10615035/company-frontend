@@ -34,6 +34,20 @@
   align-items: center;
   color: #858585;
 
+  p{
+      color: $deep-blue;
+      font-size: 2rem;
+      font-weight: bold;
+  }
+
+  ol{
+    margin-bottom: 50px;
+    margin-top: 0;
+    li{
+        font-size: 1.2rem;
+    }
+  }
+
   th,
   td {
     width: 120px;
