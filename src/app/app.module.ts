@@ -20,6 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { InformationComponent } from './information/information.component';
 import { ChooseStudentComponent } from './choose-student/choose-student.component';
 import { MatIconModule } from '@angular/material/icon';
+import { ScheduleComponent } from './schedule/schedule.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { MatIconModule } from '@angular/material/icon';
     SpinDialogComponent,
     InfoDialogComponent,
     InformationComponent,
-    ChooseStudentComponent
+    ChooseStudentComponent,
+    ScheduleComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatDialogModule,
     HttpClientModule,
     MatProgressSpinnerModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

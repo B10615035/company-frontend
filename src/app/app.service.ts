@@ -29,6 +29,7 @@ export class AppService {
   companyName: string = ""
 
   url = "http://3.113.9.185:8001"
+  // url = "http://127.0.0.1:8001"
 
   company_index(name) {
     for (let i = 0; i < this.company_list.length; i++) {
@@ -58,6 +59,12 @@ export class AppService {
     return this.httpClient.get < any > (`${this.url}/company/${this.cookieService.get('companyID')}`, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.getCookie()),
     }).pipe(delay(1500))
+  }
+
+  getSchedule(): Observable < any > {
+    return this.httpClient.get < any > (`${this.url}/company/schedule`, {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.getCookie()),
+    })
   }
 
   setCookie(token, login_info) {
